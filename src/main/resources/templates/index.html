@@ -10,26 +10,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<script>
-	function take_values() {
-		var n = document.forms["myform"]["name"].value;
-		if (n == null || n == "") {
-			alert("Please enter User Name");
-			return false;
-		} else {
-			var http = new XMLHttpRequest();
-			http.open("POST", "http://localhost:8080/Submit_Form/input.jsp",
-					true);
-			http.setRequestHeader("Content-type",
-					"application/x-www-form-urlencoded");
-			var params = "param1=" + n; // probably use document.getElementById(...).value
-			http.send(params);
-			http.onload = function() {
-				alert(http.responseText);
-			}
-		}
-	}
-</script>
+
 </head>
 
 <body>
@@ -48,7 +29,7 @@
 
 				var chart = new CanvasJS.Chart("chartContainer", {
 					title : {
-						text : "Accepting DataPoints from User Input"
+						text : "Web Status Graph"
 					},
 					data : [ {
 						type : "line",
