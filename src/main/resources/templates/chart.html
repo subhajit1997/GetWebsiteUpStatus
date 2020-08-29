@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Web Status</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script type="text/javascript">
+window.onload = function() {
+	var dataPoints = [];
+	var chart;
+	$.getJSON("newjason.json", function(data) {  
+		$.each(data, function(key, value){
+			dataPoints.push({x: value[0], y: parseInt(value[1])});
+		});
+		chart = new CanvasJS.Chart("chartContainer",{
+			title:{
+				text:"Live Chart with dataPoints from External JSON"
+			},
+			data: [{
+				type: "line",
+				dataPoints : dataPoints,
+			}]
+		});
+		chart.render();
+		
+	});
+}
+setTimeout(function() {
+	  location.reload();
+	}, 2000);
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+<body>
+
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	<form action="stop" method="get">
+		<button type="submit" >Stop Rendering</button>
+	</form>
+	
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

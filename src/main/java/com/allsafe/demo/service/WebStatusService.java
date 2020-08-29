@@ -15,14 +15,26 @@ public class WebStatusService {
 	@Autowired
 	public Response response;
 	
-	public void RunStatus()
+	
+	public int RunStatus()
 	{
 		String url=response.getUrlName();
+		System.out.println("url: "+url);
+		int responseCode;
 		if(webStatusConfig.getStatus(url))
 		{
-			response.setStatus(200);
+			responseCode=200;
+			response.setStatus(responseCode);
+			System.out.println("response code: "+200);
 		}
 		else
-			response.setStatus(500);
+		{
+			responseCode=500;
+			response.setStatus(responseCode);
+			System.out.println("response code: "+500);
+
+		}
+		return responseCode;
+		
 	}
 }

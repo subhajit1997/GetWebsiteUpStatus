@@ -11,7 +11,7 @@ public class WebStatusConfig {
 	public  boolean getStatus(String url) {
 
 	    try {
-	    	 int timeout=80000;
+	    	 int timeout=10000;
 	        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
 	        connection.setConnectTimeout(timeout);
 	        connection.setReadTimeout(timeout);
